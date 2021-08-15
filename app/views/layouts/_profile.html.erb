@@ -1,10 +1,16 @@
 <div class="user-container mt-4 row">
   <div class="user-avatar text-center col-6 col-md-5 col-lg-3">
-    <img src="https://th.bing.com/th/id/OIP.JQMcE7P-UnqjHJPCuebtBwHaE7?pid=ImgDet&rs=1" alt="Avatar" class="img-fluid rounded-circle">
+    <% if @user.avatar.present? %>
+      <%= image_tag @user.avatar, class: "img-fluid rounded-circle" %>
+    <% else %>
+      <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="Avatar" class="img-fluid rounded-circle">
+    <% end %>
   </div>
 
   <div class="user-info col-6 col-md-7 col-lg-9">
-    <span class="edit-profile rounded-pill text-center">Edit Profile</span>
+    <%= link_to(edit_user_registration_path(@user)) do %>
+      <span class="edit-profile rounded-pill text-center">Edit Profile</span>
+    <% end %>
     <h1 class="user-name"><%= @user.firstname %> <%= @user.lastname %></h1>
     <ul class="tab-list nav">
       <li class="tab pr-2 nav-item">
