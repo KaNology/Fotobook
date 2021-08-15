@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+  <div class="profile-container col-8 mt-3">
+
+    <%= render partial: 'layouts/profile', locals: {user: @user} %>
+
+    <div class="posts-container row mt-5">
+
+      <span class="add-photo rounded-pill text-center">
+        <%= link_to 'Add Album', new_album_path, class: "text-light" %>
+      </span>
+
+      <% @albums.each do |album| %>
+        <% if album.sharing_mode == "public_mode" || album.user_id == current_user.id %>
+          <div class="posts col-12 col-sm-6 col-lg-3 text-center">
+            <figure class="figure">
+              <div class="album-container">
+                <%= image_tag album.album_image[0], class: "figure-img img-fluid rounded mx-auto d-block" %>
+
+                <div class="photo-number rounded-circle text-center">
+                  <p><strong style="font-size: 1.5rem"><%= album.album_image.size %></strong><br>
+                    PHOTOS</p>
+                </div>
+
+                <% if album.sharing_mode == "private_mode" %>
+                  <div class="photo-lock rounded-circle text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                  </div>
+                <% end %>
+
+                <%= link_to 'EDIT', edit_album_path(album), class:"photo-edit rounded-pill" %>
+              </div>
+
+              <figcaption class="figure-caption text-center"><%= album.title %></figcaption>
+
+            </figure>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+
+  </div>
+</div>

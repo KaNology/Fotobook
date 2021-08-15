@@ -1,0 +1,93 @@
+<div class="home row justify-content-center">
+  <div class="post-container col-10 mt-4">
+    <div class="row justify-content-center">
+      <button type="button" class="selection-button photo-button active">PHOTO</button>
+      <button type="button" class="selection-button album-button">ALBUM</button>
+    </div>
+
+    <div class="row photo-container" style="display: flex;">
+
+      <% @photos.each do |photo| %>
+        <% if photo.sharing_mode == "public_mode" %>
+          <div class="post-content-container photo col-12 col-lg-6 mt-4 d-block">
+            <div class="row no-gutters" style="background-color: #f3f3f3;">
+              <div class="post-image col-6 d-block">
+                <%= image_tag photo.post_image, class: "img-fluid mx-auto d-block" %>
+              </div>
+
+              <div class="post-content col-6 p-2">
+                <div class="post-owner">
+                  <span class="ava font-weight-bold"><%= photo.user.firstname[0] %><%= photo.user.lastname[0] %></span>
+                  <%= link_to(profile_photo_path(photo.user)) do %>
+                    <span class="font-weight-bold"><%= photo.user.firstname %> <%= photo.user.lastname %></span>
+                  <% end %>
+                </div>
+                <div class="post-header mt-4">
+                  <%= photo.title %>
+                </div>
+                <div class="post-body">
+                  <%= photo.description %>
+                </div>
+                <div class="post-footer">
+                  <div class="post-reaction">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                    </svg>
+                    <span>123</span>
+                  </div>
+                  <span><%= l photo.created_at, format: :short %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <div class="row album-container" style="display: none;">
+
+      <% @albums.each do |album| %>
+        <% if album.sharing_mode == "public_mode" %>
+          <div class="post-content-container photo col-12 col-lg-6 mt-4">
+            <div class="row no-gutters" style="background-color: #f3f3f3;">
+              <div class="post-image col-6 d-block">
+                <%= image_tag album.album_image[0], class: "img-fluid mx-auto d-block" %>
+              </div>
+
+              <div class="post-content col-6 p-2">
+                <div class="post-owner">
+                  <span class="ava font-weight-bold"><%= album.user.firstname[0] %><%= album.user.lastname[0] %></span>
+                  <%= link_to(profile_photo_path(album.user)) do %>
+                    <span class="font-weight-bold"><%= album.user.firstname %> <%= album.user.lastname %></span>
+                  <% end %>
+                </div>
+                <div class="post-header mt-4">
+                  <%= album.title %>
+                </div>
+                <div class="post-body">
+                  <%= album.description %>
+                </div>
+                <div class="post-footer">
+                  <div class="post-reaction">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                    </svg>
+                    <span>123</span>
+                  </div>
+                  <span><%= l album.created_at, format: :short %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <%= render 'layouts/popup' %>
+
+  </div>
+</div>
+
+<%= javascript_include_tag 'feeds' %>

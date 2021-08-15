@@ -1,0 +1,24 @@
+  <nav class="navbar navbar-expand-md navbar-dark">
+  <%= link_to "Fotobook", root_path, class:"navbar-brand font-weight-bold text-light"%>
+  <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="col-7">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+    </form>
+    <% if user_signed_in? %>
+      <div class="d-flex justify-content-around offset-lg-2">
+        <span id="avatar" class="font-weight-bold mr-2"><%= current_user.firstname[0] %><%= current_user.lastname[0] %></span>
+        <%= link_to(profile_photo_path(current_user)) do %>
+          <span class="avatar-name font-weight-bold text-light"><%= current_user.firstname %> <%= current_user.lastname %></span>
+        <% end %>
+      </div>
+
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "font-weight-bold text-light ml-5" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "font-weight-bold text-light offset-4" %>
+    <% end %>
+  </div>
+</nav>

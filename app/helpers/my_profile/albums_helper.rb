@@ -1,0 +1,2 @@
+module MyProfile::AlbumsHelper
+end

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @post.post_image%>
+<%= @post.title%>
+<%= @post.description%>
+<%= @post.sharing_mode%>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', profile_photo_path(current_user) %>
