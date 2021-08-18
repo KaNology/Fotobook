@@ -1,4 +1,6 @@
 class ProfileController < ApplicationController
+    before_action :authenticate_user!
+
     # My Profile
     def photo
         @user = User.find(params[:user_id])

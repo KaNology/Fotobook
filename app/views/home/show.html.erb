@@ -11,7 +11,7 @@
         <% if photo.sharing_mode == "public_mode" %>
           <div class="post-content-container photo col-12 col-lg-6 mt-4 d-block">
             <div class="row no-gutters" style="background-color: #f3f3f3;">
-              <div class="post-image col-6 d-block">
+              <div class="post-image col-6 d-block" data-toggle="modal" data-target="#exampleModalCenter">
                 <%= image_tag photo.post_image, class: "img-fluid mx-auto d-block" %>
               </div>
 
@@ -49,9 +49,9 @@
 
       <% @albums.each do |album| %>
         <% if album.sharing_mode == "public_mode" %>
-          <div class="post-content-container photo col-12 col-lg-6 mt-4">
+          <div class="post-content-container album col-12 col-lg-6 mt-4">
             <div class="row no-gutters" style="background-color: #f3f3f3;">
-              <div class="post-image col-6 d-block">
+              <div class="post-image col-6 d-block" data-toggle="modal" data-target="#exampleModalCenter">
                 <%= image_tag album.album_image[0], class: "img-fluid mx-auto d-block" %>
               </div>
 

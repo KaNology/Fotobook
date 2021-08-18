@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_album, only: %i[ show edit update destroy ]
 
   # GET /albums/1 or /albums/1.json
