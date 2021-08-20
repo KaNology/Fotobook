@@ -11,4 +11,8 @@ class ProfileController < ApplicationController
         @user = User.find(params[:user_id])
         @albums = @user.albums.all
     end
+
+    def follower
+        @user = User.find(params[:user_id])
+    end
 end
