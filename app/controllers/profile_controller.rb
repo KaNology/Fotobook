@@ -14,5 +14,11 @@ class ProfileController < ApplicationController
 
     def follower
         @user = User.find(params[:user_id])
+        @followers = @user.followers.all
+    end
+
+    def following
+        @user = User.find(params[:user_id])
+        @followings = @user.following.all
     end
 end

@@ -36,10 +36,14 @@
         <% end %>
       </li>
       <li class="tab border-left border-right pl-2 pr-2 nav-item">
-        <span style="font-size: 1.5rem"><%= @user.following.count %></span> FOLLOWINGS
+        <%= link_to(profile_following_path(@user)) do %>
+          <span style="font-size: 1.5rem"><%= @user.following.count %></span> FOLLOWINGS
+        <% end %>
       </li>
       <li class="tab pl-2 nav-item">
-        <span style="font-size: 1.5rem"><%= @user.followers.count %></span> FOLLOWERS
+        <%= link_to(profile_follower_path(@user)) do %>
+          <span style="font-size: 1.5rem"><%= @user.followers.count %></span> FOLLOWERS
+        <% end %>
       </li>
     </ul>
   </div>

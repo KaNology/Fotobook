@@ -4,12 +4,14 @@ class FollowsController < ApplicationController
 
     def create
         current_user.follow(@user)
-        redirect_to profile_photo_path(@user)
+        # redirect_to profile_photo_path(@user)
+        redirect_back(fallback_location: root_path)
     end
 
     def destroy
         current_user.unfollow(@user)
-        redirect_to profile_photo_path(@user)
+        # redirect_to profile_photo_path(@user)
+        redirect_back(fallback_location: root_path)
     end
 
     private

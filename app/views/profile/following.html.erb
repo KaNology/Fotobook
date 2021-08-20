@@ -9,36 +9,36 @@
         <%= link_to 'Add Photo', new_post_path, class: "text-light" %>
       </span>
 
-      <% @followers.each do |follower| %>
-        <div class="follower col-12 col-sm-6 col-lg-3 text-center">
+      <% @followings.each do |following| %>
+        <div class="following col-12 col-sm-6 col-lg-3 text-center">
           <div class="rounded pt-3 pb-3" style="background-color: #f3f3f3;">
             <figure class="figure">
-              <% if follower.avatar.present? %>
-                <%= image_tag follower.avatar, class: "img-fluid rounded-circle" %>
+              <% if following.avatar.present? %>
+                <%= image_tag following.avatar, class: "img-fluid rounded-circle" %>
               <% else %>
                 <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="Avatar" class="img-fluid rounded-circle">
               <% end %>
               <figcaption class="text-center">
-                <h4><%= follower.firstname %> <%= follower.lastname %></h4>
+                <h4><%= following.firstname %> <%= following.lastname %></h4>
               </figcaption>
             </figure>
             <div class="row no-gutters mb-2 mt-n3">
               <div class="col-6 text-center" style="color: #4267B2">
-                <strong style="font-size: 1.5rem"><%= follower.posts_count %></strong><br>
+                <strong style="font-size: 1.5rem"><%= following.posts_count %></strong><br>
                 <span>PHOTOS</span>
               </div>
               <div class="col-6 text-center" style="color: #4267B2">
-                <strong style="font-size: 1.5rem"><%= follower.albums_count %></strong><br>
+                <strong style="font-size: 1.5rem"><%= following.albums_count %></strong><br>
                 <span>ALBUMS</span>
               </div>
             </div>
-            <% if follower.id != current_user.id %>
-              <% if @user.following?(follower) %>
-                <%= link_to(follow_path(id: follower.id), method: :delete) do %>
+            <% if following.id != current_user.id %>
+              <% if @user.following?(following) %>
+                <%= link_to(follow_path(id: following.id), method: :delete) do %>
                   <span class="following-status active rounded-pill text-center mx-auto">unfollow</span>
                 <% end %>
               <% else %>
-                <%= link_to(follow_path(id: follower.id)) do %>
+                <%= link_to(follow_path(id: following.id)) do %>
                   <span class="following-status rounded-pill text-center mx-auto">follow</span>
                 <% end %>
               <% end %>
